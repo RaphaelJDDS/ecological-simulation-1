@@ -14,7 +14,7 @@ struct Individual {
 int main() {
     int numberOfRuns = 1;  // Define the number of runs here
     double niceInteractionProbability = 0.25;  // Minimum probability of nice individuals interacting
-    double forgivenessProbability = 0.1;  // Probability of forgiveness
+    double forgivenessProbability = 0.1;  // Probability of forgiveness, used at 0.1 throughout the article (optimal config)
     std::ofstream file("population.csv"); 
     file << "Generation,Nice,Bullies\n";  
 
@@ -52,7 +52,7 @@ int main() {
             int idx2 = dis(gen) % population.size();
             while (idx1 == idx2 || 
                    (population[idx1].type == NICE && population[idx2].type == NICE && disReal(gen) > niceInteractionProbability)) {
-                idx2 = dis(gen) % population.size();  // Ensure we have two different individuals
+                idx2 = dis(gen) % population.size(); //Guarantee two separate individuals
             }
 
             Individual &ind1 = population[idx1];
